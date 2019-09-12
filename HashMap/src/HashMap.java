@@ -1,15 +1,11 @@
 
+public class HashMap<K,V> {
 
-public  class HashMap<K,V> {
-    // for better re-sizing is taken as 2^4
     private static final int SIZE = 16;
 
     private Entry<K,V>[] table = new Entry[SIZE];
 
-    /**
-     * To store the Map data in key and value pair.
-     * Used linked list approach to avoid the collisions
-     */
+
     class Entry<K,V> {
         final K key;
         V value;
@@ -33,9 +29,7 @@ public  class HashMap<K,V> {
         }
     }
 
-    /**
-     * Returns the entry mapped to key in the HashMap.
-     */
+
     public Entry<K,V> get(K key) {
         int hash = key.hashCode() % SIZE;
         Entry<K,V> e = table[hash];
@@ -55,22 +49,15 @@ public  class HashMap<K,V> {
         return null;
     }
 
-    /**
-     * If the map previously contained a mapping for the key, the old
-     * value is replaced.
-     */
+    //If the map previously contained a mapping for the key, the old
     public void put(K k, V v) {
         int hash = k.hashCode() % SIZE;
         Entry<K,V> e = table[hash];
 
         if(e != null) {
-            // If we will insert duplicate key-value pair,
-            // Old value will be replaced by new one.
             if(e.key.equals(k)) {
                 e.value = v;
             } else {
-                // Collision: insert new element at the end of list
-                // in the same bucket
                 while(e.next != null) {
                     e = e.next;
                 }
@@ -78,7 +65,6 @@ public  class HashMap<K,V> {
                 e.next = entryInOldBucket;
             }
         } else {
-            // create new bucket for new element in the map.
             Entry<K,V> entryInNewBucket = new Entry(k, v);
             table[hash] = entryInNewBucket;
         }
