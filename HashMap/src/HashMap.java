@@ -80,6 +80,6 @@ public class HashMap<K,V> {
         myHashMap.put("ver", "SE");
         myHashMap.put("adae", "idk");
 
-        System.out.println(myHashMap.get("roi").getValue());
+        System.out.println(myHashMap.get("mio").hashCode());
     }
 }
